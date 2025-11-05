@@ -1,20 +1,3 @@
-/**
- * webserver.c -- A webserver written in C
- *
- * Usage with curl (if you don't have it, install it):
- *
- *    curl -D - http://localhost:3490/
- *    curl -D - http://localhost:3490/d20
- *    curl -D - http://localhost:3490/date
- *
- * You can also access the above URLs in your browser!
- *
- * Posting Data:
- *
- *    curl -D - -X POST -H 'Content-Type: text/plain' -d 'Hello, sample data!'
- * http://localhost:3490/save
- */
-
 #include "cache.h"
 #include "file.h"
 #include "mime.h"
@@ -252,7 +235,8 @@ void handle_http_request(int fd, struct cache *cache) {
     char version[10];
 
     if (sscanf(request, "%s %s %s", method, path, version) != 3) {
-        printf("fuck1");
+        perror("Reading Header");
+        return;
     }
 
     // If GET, handle the get endpoints
