@@ -37,8 +37,6 @@ int send_response(int fd, char *header, char *content_type, void *body,
 
     // Build HTTP response and store it in response
 
-    ///////////////////
-    // IMPLEMENT ME! //
     int response_length = snprintf(response, max_response_size,
                                    "%s\r\n"
                                    "Connection: close\r\n"
@@ -46,7 +44,6 @@ int send_response(int fd, char *header, char *content_type, void *body,
                                    "Content-Type: %s\r\n"
                                    "\r\n",
                                    header, content_length, content_type);
-    ///////////////////
 
     // Send it all!
     int rv = send(fd, response, response_length, 0);
